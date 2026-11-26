@@ -1,0 +1,40 @@
+# Classic 1984 -- the seven original tetrominoes, as close to the original as ExTetris allows.
+[variant]
+name = "Classic 1984"
+version = "1.0"
+authors = ["Team Sahu"]
+description = "The seven classic tetrominoes on a 10x20 well. No wall kicks, gentle speed curve."
+
+[board]
+width = 10
+height = 20
+walls = "solid"
+
+[pieces]
+preset = "Classic"
+
+[distribution]
+kind = "uniform"
+
+[levels]
+start_level = 0
+lines_per_level = 10
+base_ms = 1000
+factor = 0.9
+min_ms = 80
+
+[scoring]
+line_points = [0, 40, 100, 300, 1200]
+soft_drop = 1
+hard_drop = 0
+
+[physics]
+gravity = "naive_drop"
+rotation = "both"
+kicks = false
+hard_drop_locks = true
+preview = 1
+
+[theme]
+name = "retro"
+cell_px = 28

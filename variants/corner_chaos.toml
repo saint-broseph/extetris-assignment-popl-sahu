@@ -1,0 +1,47 @@
+# Corner Chaos -- all 34 pieces, wrap-around walls, and an adaptive bag that prevents long droughts.
+[variant]
+name = "Corner Chaos"
+version = "1.0"
+authors = ["Team Sahu"]
+description = "Every 4-cell piece joined by edges or corners. Walls wrap around; groups fall in cascades."
+
+[board]
+width = 12
+height = 22
+walls = "wrap"
+
+[pieces]
+preset = "Full"
+
+[distribution]
+kind = "adaptive"
+base = "by_property"
+rule = "favor_few_holes"
+strength = 0.5
+drought_boost = 2.0
+repeat_penalty = 0.4
+
+[levels]
+lines_per_level = 8
+base_ms = 900
+factor = 0.88
+min_ms = 70
+
+[scoring]
+line_points = [0, 100, 300, 500, 800]
+chain_bonus = 150
+
+[physics]
+gravity = "cascade"
+rotation = "both"
+kicks = true
+preview = 3
+
+[theme]
+name = "dark"
+colors = { block = "#c45cff", active = "#ffd23f" }
+
+[[triggers]]
+id = "chaos-speeds-up"
+when = { lines_at_least = 30 }
+set = { "levels.factor" = 0.85 }

@@ -1,0 +1,89 @@
+$ python v2_platform_release/cli.py validate variants/classic_1984.toml
+OK  'Classic 1984' v1.0 is a valid variant.
+    board        10 x 20, solid walls, naive_drop gravity, rotation both
+    pieces       7 (I, O, T, S, Z, L, J)
+    distribution uniform; most likely: I 14.3%, O 14.3%, T 14.3%
+    speed        level 0: 1000 ms, level 5: 590 ms, level 10: 349 ms (new level every 10 lines)
+    fingerprint  2563d35d7f88a0c1
+(exit 0)
+
+$ python v2_platform_release/cli.py simulate variants/classic_1984.toml --games 100
+Simulation of 'Classic 1984': 100 games, greedy bot, 33.8 s
+  pieces per game  mean    229.4   median   265.5   max     300
+  lines per game   mean     82.7   median    93.5   max     119
+  score per game   mean  24690.2   median 29880.0   max   56020
+  level reached    mean      7.8   median     9.0   max      11
+  games stopped at the piece limit: 47
+  most / least frequent pieces (observed vs designed):
+     T1x4.H0000.0    14.6%  vs  14.3%
+     T2x2.H0000.0    14.5%  vs  14.3%
+     T2x3.H1111.+    14.4%  vs  14.3%
+     T2x3.H1111.-    14.1%  vs  14.3%
+     T2x3.H0022.+    13.8%  vs  14.3%
+  verdict:
+     BALANCED: average game 229 pieces.
+     Lines per piece 0.36 (a strong classic game is about 0.35-0.40).
+     Piece frequencies differ from the design probabilities by at most 0.4 percentage points.
+(exit 0)
+
+$ python v2_platform_release/cli.py validate variants/corner_chaos.toml
+OK  'Corner Chaos' v1.0 is a valid variant.
+    board        12 x 22, wrap walls, cascade gravity, rotation both with kicks
+    pieces       34 (I, O, T, S, Z, L, J, X2x3.H1112.+, X2x3.H1112.-, X2x4.H1133.+, X2x4.H1133.-, X2x4.H1233.-, X2x4.H1332.+, X2x4.H2222.+, X2x4.H2222.-, X2x4.H2323.+, X2x...)
+    distribution adaptive; most likely: I 4.5%, O 4.5%, T 4.5%
+    speed        level 0: 900 ms, level 5: 475 ms, level 10: 251 ms (new level every 8 lines)
+    trigger      'chaos-speeds-up': when total lines cleared reaches 30, levels.factor becomes 0.85
+    fingerprint  b0032ff2cfa619ff
+(exit 0)
+
+$ python v2_platform_release/cli.py simulate variants/corner_chaos.toml --games 100
+Simulation of 'Corner Chaos': 100 games, greedy bot, 24.1 s
+  pieces per game  mean     79.6   median    72.0   max     182
+  lines per game   mean     11.2   median     9.0   max      46
+  score per game   mean   4245.5   median  2762.0   max   24130
+  level reached    mean      1.0   median     1.0   max       5
+  games stopped at the piece limit: 0
+  most / least frequent pieces (observed vs designed):
+     T1x4.H0000.0     4.4%  vs   4.5%
+     T2x2.H0000.0     4.3%  vs   4.5%
+     T2x3.H0022.-     4.1%  vs   4.5%
+     X4x4.H6666.0     2.2%  vs   1.7%
+     X3x4.H3355.+     2.1%  vs   2.3%
+  verdict:
+     BALANCED: average game 80 pieces.
+     Lines per piece 0.14 (a strong classic game is about 0.35-0.40).
+     Piece frequencies differ from the design probabilities by at most 0.6 percentage points.
+(exit 0)
+
+$ python v2_platform_release/cli.py validate variants/zen_sandbox.toml
+OK  'Zen Sandbox' v1.0 is a valid variant.
+    board        14 x 24, solid walls, naive_drop gravity, rotation both with kicks
+    pieces       15 (I, O, T, S, Z, L, J, X2x3.H1112.+, X2x3.H1112.-, X2x4.H1133.+, X2x4.H1133.-, X2x4.H1233.-, X2x4.H1332.+, X3x3.H1144.0, X3x3.H1343.0...)
+    distribution bag; most likely: I 6.7%, O 6.7%, T 6.7%
+    speed        level 0: 1400 ms, level 5: 1142 ms, level 10: 931 ms (new level every 15 lines)
+    trigger      'bonus-cascade': when total lines cleared reaches 10, physics.gravity becomes cascade
+    trigger      'bonus-slowdown': when total lines cleared reaches 25, levels.base_ms becomes 1800, levels.min_ms becomes 600
+    trigger      'bonus-preview': when score reaches 5000, physics.preview becomes 6
+    fingerprint  578086ffda413e41
+(exit 0)
+
+$ python v2_platform_release/cli.py simulate variants/zen_sandbox.toml --games 100
+Simulation of 'Zen Sandbox': 100 games, greedy bot, 62.6 s
+  pieces per game  mean    172.6   median   157.0   max     300
+  lines per game   mean     31.9   median    26.5   max      77
+  score per game   mean  11888.2   median  7928.0   max   39358
+  level reached    mean      1.6   median     1.0   max       5
+  games stopped at the piece limit: 11
+  triggers fired: bonus-cascade x88, bonus-preview x75, bonus-slowdown x54
+  most / least frequent pieces (observed vs designed):
+     T2x2.H0000.0     6.7%  vs   6.7%
+     T2x3.H1111.-     6.7%  vs   6.7%
+     T2x3.H0121.0     6.7%  vs   6.7%
+     X3x3.H1144.0     6.6%  vs   6.7%
+     T2x3.H0022.+     6.6%  vs   6.7%
+  verdict:
+     BALANCED: average game 173 pieces.
+     Lines per piece 0.18 (a strong classic game is about 0.35-0.40).
+     Piece frequencies differ from the design probabilities by at most 0.1 percentage points.
+(exit 0)
+

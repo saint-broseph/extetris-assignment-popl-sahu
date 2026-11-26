@@ -1,0 +1,53 @@
+# Zen Sandbox -- a wide, slow, forgiving board with the easy pieces and rewards that make it calmer.
+[variant]
+name = "Zen Sandbox"
+version = "1.0"
+authors = ["Team Sahu"]
+description = "14x24 board, Extended-Easy pieces from a 2-copy bag, slow speed and bonus triggers."
+
+[board]
+width = 14
+height = 24
+walls = "solid"
+
+[pieces]
+preset = "Extended-Easy"
+
+[distribution]
+kind = "bag"
+copies = 2
+
+[levels]
+lines_per_level = 15
+base_ms = 1400
+factor = 0.96
+min_ms = 400
+
+[scoring]
+line_points = [0, 100, 250, 450, 700]
+chain_bonus = 200
+
+[physics]
+gravity = "naive_drop"
+kicks = true
+hard_drop_locks = false
+preview = 5
+
+[theme]
+name = "light"
+cell_px = 24
+
+[[triggers]]
+id = "bonus-cascade"
+when = { lines_at_least = 10 }
+set = { "physics.gravity" = "cascade" }
+
+[[triggers]]
+id = "bonus-slowdown"
+when = { lines_at_least = 25 }
+set = { "levels.base_ms" = 1800, "levels.min_ms" = 600 }
+
+[[triggers]]
+id = "bonus-preview"
+when = { score_at_least = 5000 }
+set = { "physics.preview" = 6 }

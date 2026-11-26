@@ -33,6 +33,8 @@ THEMES = {
              "ghost": "#3a3f4d", "text": "#e8e8e8", "overlay": "#000000"},
     "light": {"bg": "#f4f4f4", "grid": "#dddddd", "block": "#2f6fdf", "active": "#e07b00",
               "ghost": "#c8c8c8", "text": "#202020", "overlay": "#ffffff"},
+    "retro": {"bg": "#000000", "grid": "#0b1f0b", "block": "#33ff66", "active": "#ccff00",
+              "ghost": "#174d1f", "text": "#33ff66", "overlay": "#000000"},
 }
 
 
@@ -42,7 +44,7 @@ class TkinterRenderer:
     def __init__(self, root: tk.Misc, engine: Engine) -> None:
         ui = engine.config["ui"]
         self.cell = int(ui.get("cell_px", 28))
-        self.colors = THEMES.get(ui.get("theme", "dark"), THEMES["dark"])
+        self.colors = {**THEMES.get(ui.get("theme", "dark"), THEMES["dark"]), **ui.get("colors", {})}
         self.show_ghost = bool(ui.get("show_ghost", True))
         r = engine.rules
         self.board = tk.Canvas(root, width=r.width * self.cell, height=r.height * self.cell,
