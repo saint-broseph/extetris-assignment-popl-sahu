@@ -533,3 +533,4 @@ Each iteration ends with a verification script or pytest module, an AI-log entry
 | Rev | Date | Change |
 |---|---|---|
 | 1.0 | 2026-11-26 | Initial blueprint; Layer 0 implemented (`piece.py`), v0.5 failure documented |
+| 1.1 | 2026-11-26 | Phase 3: whole core implemented. Per Prompt 9, `Rules`, `Scoring` and `LevelPolicy` live in `state.py` (not separate `rules.py`/`scoring.py`/`level.py`), and `GameState`/`Board` are immutable. `VariantSpec` is realised as the engine's layered config (`defaults -> spec -> player -> runtime`) plus `load_spec()`. The Tk adapter is `tk_adapter.py` (`TkinterRenderer`, `TkinterController`). Tests are in `test_v1.py`. |

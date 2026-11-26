@@ -1,0 +1,31 @@
+# pytest v1_core_system  (Python 3.12.3, under Xvfb so the Tk smoke test runs)
+platform linux -- Python 3.12.3, pytest-9.2.0, pluggy-1.7.0 -- /usr/bin/python3.12
+cachedir: .pytest_cache
+rootdir: /home/claude/phase2
+collecting ... collected 23 items
+
+v1_core_system/test_v1.py::test_all_34_pieces PASSED                     [  4%]
+v1_core_system/test_v1.py::test_starter_matrices_match_up_to_rotation PASSED [  8%]
+v1_core_system/test_v1.py::test_presets PASSED                           [ 13%]
+v1_core_system/test_v1.py::test_filters PASSED                           [ 17%]
+v1_core_system/test_v1.py::test_set_algebra PASSED                       [ 21%]
+v1_core_system/test_v1.py::test_uniform_is_fair_per_piece_and_fixes_starter_bias PASSED [ 26%]
+v1_core_system/test_v1.py::test_weighted_and_by_property_match_probabilities PASSED [ 30%]
+v1_core_system/test_v1.py::test_bag_gives_each_piece_once_per_bag PASSED [ 34%]
+v1_core_system/test_v1.py::test_adaptive_shortens_droughts_and_mixture_sums PASSED [ 39%]
+v1_core_system/test_v1.py::test_distributions_are_deterministic_per_seed PASSED [ 43%]
+v1_core_system/test_v1.py::test_solid_walls_block_and_wrap_walls_wrap PASSED [ 47%]
+v1_core_system/test_v1.py::test_naive_vs_cascade_gravity PASSED          [ 52%]
+v1_core_system/test_v1.py::test_level_policy_threshold_crossing_and_clamp PASSED [ 56%]
+v1_core_system/test_v1.py::test_scoring_and_rules_validation PASSED      [ 60%]
+v1_core_system/test_v1.py::test_engine_has_zero_tkinter PASSED           [ 65%]
+v1_core_system/test_v1.py::test_pause_ignores_ticks_and_input PASSED     [ 69%]
+v1_core_system/test_v1.py::test_determinism_same_seed_same_game PASSED   [ 73%]
+v1_core_system/test_v1.py::test_layered_config_and_restrictions PASSED   [ 78%]
+v1_core_system/test_v1.py::test_runtime_updates_apply_only_at_tick_boundary PASSED [ 82%]
+v1_core_system/test_v1.py::test_triggers_fire_once_and_are_restricted PASSED [ 86%]
+v1_core_system/test_v1.py::test_save_resume_with_hash_verification PASSED [ 91%]
+v1_core_system/test_v1.py::test_300_simulated_games PASSED               [ 95%]
+v1_core_system/test_v1.py::test_tk_adapter_smoke PASSED                  [100%]
+
+============================== 23 passed in 2.84s ==============================
