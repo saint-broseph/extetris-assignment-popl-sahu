@@ -1,0 +1,201 @@
+################ python v1_core_system/verify_piece.py   (Python 3.12.3, numpy 2.5.5)
+verify_piece.py: 9 checks on /home/claude/phase2/v1_core_system/piece.py
+[....] test_1_catalogue_counts
+      counts {'fixed': 110, 'one_sided': 34, 'free': 22, 'classic': 7, 'extended': 27}
+      class sizes Tetromino=7, ExTetromino2x3=2, ExTetromino2x4=9, ExTetromino3x3=9, ExTetromino3x4=6, ExTetromino4x4=1
+[PASS] test_1_catalogue_counts
+[....] test_2_constructive_instantiation_round_trip
+      34 constructor calls -> 34 distinct pieces; invariants round-trip; bad/abstract calls rejected
+[PASS] test_2_constructive_instantiation_round_trip
+[....] test_3_invariant_key_unique_and_v05_resolved
+      v0.5 key (2x3, diagonals=2) -> 2 pieces, separated by (holes, hand): X2x3.H1112.+, X2x3.H1112.-
+      v0.5 key (2x4, diagonals=1) -> 4 pieces, separated by (holes, hand): X2x4.H1133.+, X2x4.H1133.-, X2x4.H2222.+, X2x4.H2222.-
+      v0.5 key (2x4, diagonals=2) -> 3 pieces, separated by (holes, hand): X2x4.H1233.-, X2x4.H1332.+, X2x4.H2323.0
+      v0.5 key (2x4, diagonals=3) -> 2 pieces, separated by (holes, hand): X2x4.H2323.+, X2x4.H2323.-
+      v0.5 key (3x3, diagonals=2) -> 6 pieces, separated by (holes, hand): X3x3.H1343.0, X3x3.H2233.+, X3x3.H2233.0, X3x3.H2233.-, X3x3.H2234.-, X3x3.H2243.+
+      v0.5 key (3x4, diagonals=2) -> 4 pieces, separated by (holes, hand): X3x4.H3355.+, X3x4.H3355.-, X3x4.H4444.+, X3x4.H4444.-
+      v0.5 key (3x4, diagonals=3) -> 2 pieces, separated by (holes, hand): X3x4.H4445.+, X3x4.H4445.-
+      v0.5 key: 27 extended pieces -> 11 keys (16 pieces unreachable); v1 key: 34 pieces -> 34 keys
+[PASS] test_3_invariant_key_unique_and_v05_resolved
+[....] test_4_no_hardcoded_matrices_or_eval
+      AST scan of piece.py: 0 matrix literals, 0 eval/exec, 0 array(<literal>) calls
+[PASS] test_4_no_hardcoded_matrices_or_eval
+[....] test_5_immutability_and_bug02_regression
+      setattr/delattr blocked; rotation returns new objects; 7 turns of S leave a fresh S intact;
+      matrices are read-only copies; deepcopy/pickle/hash consistent
+[PASS] test_5_immutability_and_bug02_regression
+[....] test_6_rotation_and_mirror_algebra
+      turned(4) = identity, cw/ccw inverse, invariants equal in every orientation;
+      mirror keeps class and bbox and flips hand; 24 pieces form 12 mirror pairs, 10 are symmetric
+[PASS] test_6_rotation_and_mirror_algebra
+[....] test_7_all_73_starter_matrices_match_up_to_rotation
+      73/73 starter matrices matched (numpy.rot90 cross-check); all 34 pieces covered; v0_starter/allextetrominoes.py unchanged
+      listed x4: 8 pieces, x3: 1, x2: 13, x1: 12
+
+      code           class           spawn (rows split by /)  starter indices
+      I              Tetromino       ####                     [1, 10, 11]
+      O              Tetromino       ##/##                    [2]
+      T              Tetromino       .#./###                  [4]
+      S              Tetromino       .##/##.                  [6, 23]
+      Z              Tetromino       ##./.##                  [7]
+      L              Tetromino       ..#/###                  [3]
+      J              Tetromino       #../###                  [5]
+      X2x3.H1112.+   ExTetromino2x3  #.#/##.                  [22, 24]
+      X2x3.H1112.-   ExTetromino2x3  ##./#.#                  [8, 9]
+      X2x4.H1133.+   ExTetromino2x4  ...#/###.                [63, 66]
+      X2x4.H1133.-   ExTetromino2x4  #.../.###                [12, 18]
+      X2x4.H1233.-   ExTetromino2x4  ..#./##.#                [15, 21]
+      X2x4.H1332.+   ExTetromino2x4  .#../#.##                [13, 20]
+      X2x4.H2222.+   ExTetromino2x4  ..##/##..                [64]
+      X2x4.H2222.-   ExTetromino2x4  ##../..##                [14]
+      X2x4.H2323.+   ExTetromino2x4  .#.#/#.#.                [65]
+      X2x4.H2323.0   ExTetromino2x4  #..#/.##.                [17, 19]
+      X2x4.H2323.-   ExTetromino2x4  #.#./.#.#                [16]
+      X3x3.H1144.0   ExTetromino3x3  #../#../.##              [27, 33, 39, 57]
+      X3x3.H1343.0   ExTetromino3x3  .#./.#./#.#              [29, 34, 48, 52]
+      X3x3.H2233.+   ExTetromino3x3  #../.#./.##              [25, 38, 50, 54]
+      X3x3.H2233.0   ExTetromino3x3  .#./##./..#              [35, 42, 47, 51]
+      X3x3.H2233.-   ExTetromino3x3  #../##./..#              [31, 36, 41, 55]
+      X3x3.H2234.-   ExTetromino3x3  .#./#../.##              [26, 43, 46, 53]
+      X3x3.H2243.+   ExTetromino3x3  #../#.#/.#.              [32, 40, 45, 49]
+      X3x3.H2244.0   ExTetromino3x3  #../.#./#.#              [28, 30, 37, 56]
+      X3x3.H3333.0   ExTetromino3x3  .#./#.#/.#.              [44]
+      X3x4.H3355.+   ExTetromino3x4  ...#/..#./##..           [67, 70]
+      X3x4.H3355.-   ExTetromino3x4  #.../.#../..##           [58, 61]
+      X3x4.H4444.+   ExTetromino3x4  ...#/.##./#...           [68]
+      X3x4.H4444.-   ExTetromino3x4  #.../.##./...#           [59]
+      X3x4.H4445.+   ExTetromino3x4  ..#./.#.#/#...           [69, 71]
+      X3x4.H4445.-   ExTetromino3x4  #.../.#.#/..#.           [60, 62]
+      X4x4.H6666.0   ExTetromino4x4  #.../.#../..#./...#      [72, 73]
+[PASS] test_7_all_73_starter_matrices_match_up_to_rotation
+[....] test_8_starter_labels_agree_with_tetromino_letters
+      starter labels agree: 1:I 2:O 3:L 4:T 5:Gamma 6:S 7:Z 10:I 11:I
+[PASS] test_8_starter_labels_agree_with_tetromino_letters
+[....] test_9_classic_spawn_orientations
+      spawn orientations are flat side down: I=####  O=##/##  T=.#./###  S=.##/##.  Z=##./.##  L=..#/###  J=#../###
+[PASS] test_9_classic_spawn_orientations
+
+9 passed, 0 failed, 0 skipped
+
+################ python v0.5_failed_attempt/verify_v05.py   (Python 3.12.3, numpy 2.5.5)
+==============================================================================
+v0.5 constructor: ExTetromino<bbox>(diagonals)  -- collision proof
+==============================================================================
+
+Extended pieces that exist: 27
+Distinct v0.5 constructor calls (subclass, diagonals): 11
+Pieces the v0.5 constructor can actually build: 11  -> 16 pieces are unreachable
+
+constructor call             pieces matching   status
+ExTetromino2x3(diagonals=2)                2   AMBIGUOUS: returns 1 of 2
+ExTetromino2x4(diagonals=1)                4   AMBIGUOUS: returns 1 of 4
+ExTetromino2x4(diagonals=2)                3   AMBIGUOUS: returns 1 of 3
+ExTetromino2x4(diagonals=3)                2   AMBIGUOUS: returns 1 of 2
+ExTetromino3x3(diagonals=1)                1   ok (unique)
+ExTetromino3x3(diagonals=2)                6   AMBIGUOUS: returns 1 of 6
+ExTetromino3x3(diagonals=3)                1   ok (unique)
+ExTetromino3x3(diagonals=4)                1   ok (unique)
+ExTetromino3x4(diagonals=2)                4   AMBIGUOUS: returns 1 of 4
+ExTetromino3x4(diagonals=3)                2   AMBIGUOUS: returns 1 of 2
+ExTetromino4x4(diagonals=3)                1   ok (unique)
+
+==============================================================================
+Exact colliding shapes (each block = one constructor call; '*' = what v0.5 returns)
+==============================================================================
+
+  ExTetromino2x3(diagonals=2): bbox 2x3, 2 diagonal connection(s) -> 2 different pieces
+      *X2x3.H1112.-     X2x3.H1112.+
+      ##.              #.#
+      #.#              ##.
+      mirror twins (distinct chiral pieces): X2x3.H1112.-  <->  X2x3.H1112.+
+
+  ExTetromino2x4(diagonals=1): bbox 2x4, 1 diagonal connection(s) -> 4 different pieces
+      *X2x4.H1133.-     X2x4.H2222.-     X2x4.H1133.+     X2x4.H2222.+
+      ###.             ##..             .###             ..##
+      ...#             ..##             #...             ##..
+      mirror twins (distinct chiral pieces): X2x4.H1133.-  <->  X2x4.H1133.+
+      mirror twins (distinct chiral pieces): X2x4.H2222.-  <->  X2x4.H2222.+
+
+  ExTetromino2x4(diagonals=2): bbox 2x4, 2 diagonal connection(s) -> 3 different pieces
+      *X2x4.H1332.+     X2x4.H1233.-     X2x4.H2323.0
+      ##.#             #.##             #..#
+      ..#.             .#..             .##.
+      mirror twins (distinct chiral pieces): X2x4.H1332.+  <->  X2x4.H1233.-
+
+  ExTetromino2x4(diagonals=3): bbox 2x4, 3 diagonal connection(s) -> 2 different pieces
+      *X2x4.H2323.-     X2x4.H2323.+
+      #.#.             .#.#
+      .#.#             #.#.
+      mirror twins (distinct chiral pieces): X2x4.H2323.-  <->  X2x4.H2323.+
+
+  ExTetromino3x3(diagonals=2): bbox 3x3, 2 diagonal connection(s) -> 6 different pieces
+      *X3x3.H2233.+     X3x3.H2234.-     X3x3.H1343.0     X3x3.H2233.-     X3x3.H2243.+     X3x3.H2233.0
+      ##.              ##.              #.#              #..              #..              #..
+      .#.              ..#              .#.              ##.              #.#              .##
+      ..#              .#.              .#.              ..#              .#.              .#.
+      mirror twins (distinct chiral pieces): X3x3.H2233.+  <->  X3x3.H2233.-
+      mirror twins (distinct chiral pieces): X3x3.H2234.-  <->  X3x3.H2243.+
+
+  ExTetromino3x4(diagonals=2): bbox 3x4, 2 diagonal connection(s) -> 4 different pieces
+      *X3x4.H3355.-     X3x4.H4444.-     X3x4.H3355.+     X3x4.H4444.+
+      ##..             #...             ..##             ...#
+      ..#.             .##.             .#..             .##.
+      ...#             ...#             #...             #...
+      mirror twins (distinct chiral pieces): X3x4.H3355.-  <->  X3x4.H3355.+
+      mirror twins (distinct chiral pieces): X3x4.H4444.-  <->  X3x4.H4444.+
+
+  ExTetromino3x4(diagonals=3): bbox 3x4, 3 diagonal connection(s) -> 2 different pieces
+      *X3x4.H4445.-     X3x4.H4445.+
+      #...             ..#.
+      .#.#             .#.#
+      ..#.             #...
+      mirror twins (distinct chiral pieces): X3x4.H4445.-  <->  X3x4.H4445.+
+
+==============================================================================
+Why mirror twins always collide
+==============================================================================
+  Reflection keeps the bounding box and the diagonal count for all 27 pieces: True
+  Chiral extended pieces: 20 = 10 mirror pairs; pairs that share one v0.5 constructor call: 10/10
+  => Any key built only from reflection-invariant properties can NEVER separate twins;
+     a handedness (reflection-sensitive) parameter is logically required.
+
+==============================================================================
+Refinement probes (what must be added to the constructor key)
+==============================================================================
+
+  (bbox, diagonals)                    [v0.5]: 11/27 pieces distinguishable
+      still colliding: X2x3.H1112.-, X2x3.H1112.+
+      still colliding: X2x4.H1133.-, X2x4.H2222.-, X2x4.H1133.+, X2x4.H2222.+
+      still colliding: X2x4.H1332.+, X2x4.H1233.-, X2x4.H2323.0
+      still colliding: X2x4.H2323.-, X2x4.H2323.+
+      still colliding: X3x3.H2233.+, X3x3.H2234.-, X3x3.H1343.0, X3x3.H2233.-, X3x3.H2243.+, X3x3.H2233.0
+      still colliding: X3x4.H3355.-, X3x4.H4444.-, X3x4.H3355.+, X3x4.H4444.+
+      still colliding: X3x4.H4445.-, X3x4.H4445.+
+
+  (bbox, diagonals, hole signature): 18/27 pieces distinguishable
+      still colliding: X2x3.H1112.-, X2x3.H1112.+
+      still colliding: X2x4.H1133.-, X2x4.H1133.+
+      still colliding: X2x4.H2222.-, X2x4.H2222.+
+      still colliding: X2x4.H2323.-, X2x4.H2323.+
+      still colliding: X3x3.H2233.+, X3x3.H2233.-, X3x3.H2233.0
+      still colliding: X3x4.H3355.-, X3x4.H3355.+
+      still colliding: X3x4.H4444.-, X3x4.H4444.+
+      still colliding: X3x4.H4445.-, X3x4.H4445.+
+
+  (bbox, diagonals, handedness): 20/27 pieces distinguishable
+      still colliding: X2x4.H1133.-, X2x4.H2222.-
+      still colliding: X2x4.H1133.+, X2x4.H2222.+
+      still colliding: X3x3.H2233.+, X3x3.H2243.+
+      still colliding: X3x3.H2234.-, X3x3.H2233.-
+      still colliding: X3x3.H1343.0, X3x3.H2233.0
+      still colliding: X3x4.H3355.-, X3x4.H4444.-
+      still colliding: X3x4.H3355.+, X3x4.H4444.+
+
+  (bbox, diagonals, holes, handedness): 27/27 pieces distinguishable
+
+  (bbox, holes, handedness)            [v1]: 27/27 pieces distinguishable
+
+==============================================================================
+PROOF COMPLETE: (bbox, diagonals) is ambiguous; hole signature AND handedness are both needed.
+==============================================================================
+
