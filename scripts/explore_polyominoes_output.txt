@@ -1,0 +1,103 @@
+==============================================================================
+1. COUNTS (king-connected 4-cell shapes)
+==============================================================================
+  fixed (translations only)         110   expected  110 (OEIS A006770)  OK
+  one-sided (up to rotation)         34   expected   34 (OEIS A030233)  OK
+  free (rotation + reflection)       22   expected   22 (OEIS A030222)  OK
+  free, mirror-symmetric             10   expected   10 (OEIS A030234)  OK
+  free, chiral (come in pairs)       12   expected   12 (OEIS A030235)  OK
+  brute-force and growth enumerations agree: 110 == 110
+  one-sided split: 7 classic (edge-connected) + 27 extended
+  free split:      5 classic (edge-connected) + 17 extended
+  distinct orientations per one-sided shape: 1 orientation(s): 2 shapes, 2 orientation(s): 10 shapes, 4 orientation(s): 22 shapes (check: sum = 110)
+
+==============================================================================
+2. CATALOGUE OF THE 34 ONE-SIDED SHAPES (canonical orientation; '/' = new row)
+==============================================================================
+id   picture            bbox E,D   eC holes        chir    hand   ImM4 mir  or  starter idx
+P01  ####               1x4  3,0   1  (0, 0, 0, 0) achiral 0         0 self 2   [1, 10, 11]
+P02  ##/##              2x2  4,2   1  (0, 0, 0, 0) achiral 0         0 self 1   [2]
+P03  ###/#..            2x3  3,1   1  (0, 0, 2, 2) chiral  +       384 P04  4   [3]
+P04  ###/..#            2x3  3,1   1  (0, 0, 2, 2) chiral  -      -384 P03  4   [5]
+P05  ###/.#.            2x3  3,2   1  (0, 1, 2, 1) achiral 0         0 self 4   [4]
+P06  #./##/.#           2x3  3,2   1  (1, 1, 1, 1) chiral  +       768 P07  2   [6, 23]
+P07  ##./.##            2x3  3,2   1  (1, 1, 1, 1) chiral  -      -768 P06  2   [7]
+P08  ##/#./.#           2x3  2,2   2  (1, 1, 1, 2) chiral  +       864 P09  4   [22, 24]
+P09  ##./#.#            2x3  2,2   2  (1, 1, 1, 2) chiral  -      -864 P08  4   [8, 9]
+P10  #./#./#./.#        2x4  2,1   2  (1, 1, 3, 3) chiral  +      2784 P11  4   [63, 66]
+P11  ###./...#          2x4  2,1   2  (1, 1, 3, 3) chiral  -     -2784 P10  4   [12, 18]
+P12  #./#./.#/.#        2x4  2,1   2  (2, 2, 2, 2) chiral  +      3072 P13  2   [64]
+P13  ##../..##          2x4  2,1   2  (2, 2, 2, 2) chiral  -     -3072 P12  2   [14]
+P14  ##./..#/..#        3x3  2,1   2  (1, 1, 4, 4) achiral 0         0 self 4   [27, 33, 39, 57]
+P15  ##./.#./..#        3x3  2,2   2  (2, 2, 3, 3) chiral  +       384 P16  4   [25, 38, 50, 54]
+P16  #../##./..#        3x3  2,2   2  (2, 2, 3, 3) chiral  -      -384 P15  4   [31, 36, 41, 55]
+P17  #../.##/.#.        3x3  2,2   2  (2, 2, 3, 3) achiral 0         0 self 4   [35, 42, 47, 51]
+P18  #.##/.#..          2x4  1,2   3  (1, 2, 3, 3) chiral  -       -96 P19  4   [15, 21]
+P19  ##.#/..#.          2x4  1,2   3  (1, 3, 3, 2) chiral  +        96 P18  4   [13, 20]
+P20  #..#/.##.          2x4  1,2   3  (2, 3, 2, 3) achiral 0         0 self 4   [17, 19]
+P21  #.#/.#./.#.        3x3  1,2   3  (1, 3, 4, 3) achiral 0         0 self 4   [29, 34, 48, 52]
+P22  ##./..#/.#.        3x3  1,2   3  (2, 2, 3, 4) chiral  -      -576 P23  4   [26, 43, 46, 53]
+P23  #../#.#/.#.        3x3  1,2   3  (2, 2, 4, 3) chiral  +       576 P22  4   [32, 40, 45, 49]
+P24  #../#../.#./..#    3x4  1,2   3  (3, 3, 5, 5) chiral  +      3168 P25  4   [67, 70]
+P25  ##../..#./...#     3x4  1,2   3  (3, 3, 5, 5) chiral  -     -3168 P24  4   [58, 61]
+P26  #../.#./.#./..#    3x4  1,2   3  (4, 4, 4, 4) chiral  +      3840 P27  2   [68]
+P27  #.../.##./...#     3x4  1,2   3  (4, 4, 4, 4) chiral  -     -3840 P26  2   [59]
+P28  #./.#/#./.#        2x4  0,3   4  (2, 3, 2, 3) chiral  +      3072 P29  2   [65]
+P29  #.#./.#.#          2x4  0,3   4  (2, 3, 2, 3) chiral  -     -3072 P28  2   [16]
+P30  #.#/.#./#..        3x3  0,3   4  (2, 2, 4, 4) achiral 0         0 self 4   [28, 30, 37, 56]
+P31  .#./#.#/.#.        3x3  0,4   4  (3, 3, 3, 3) achiral 0         0 self 1   [44]
+P32  #../.#./..#/.#.    3x4  0,3   4  (4, 4, 4, 5) chiral  +      1536 P33  4   [69, 71]
+P33  #.../.#.#/..#.     3x4  0,3   4  (4, 4, 4, 5) chiral  -     -1536 P32  4   [60, 62]
+P34  #.../.#../..#./...# 4x4  0,3   4  (6, 6, 6, 6) achiral 0         0 self 2   [72, 73]
+  E,D = edge-adjacent / corner-only-adjacent cell pairs; eC = edge-connected components;
+  holes = landing holes per orientation (CW cycle); or = distinct orientations
+
+==============================================================================
+3. DO THE INVARIANTS IDENTIFY EVERY SHAPE?
+==============================================================================
+  Single invariants (34 = identifies every one-sided shape):
+    bbox                           7 distinct values; largest group of look-alikes = 9
+    edge/corner pairs              9 distinct values; largest group of look-alikes = 10
+    edge components                4 distinct values; largest group of look-alikes = 10
+    hole signature (cyclic)       21 distinct values; largest group of look-alikes = 3
+    chirality                      2 distinct values; largest group of look-alikes = 24
+    handedness (sign Im M4)        3 distinct values; largest group of look-alikes = 12
+
+  Requested combination ('bbox', 'edge/corner pairs', 'hole signature (cyclic)', 'chirality', 'handedness (sign Im M4)'):
+    34 distinct values for 34 shapes -> UNIQUE
+    what collides if one of them is dropped:
+      without bbox                       34/34  still unique
+      without edge/corner pairs          34/34  still unique
+      without hole signature (cyclic)    30/34  [['P10', 'P12'], ['P11', 'P13'], ['P24', 'P26'], ['P25', 'P27']]
+      without chirality                  34/34  still unique
+      without handedness (sign Im M4)    24/34  [['P03', 'P04'], ['P06', 'P07'], ['P08', 'P09'], ['P10', 'P11'], ['P12', 'P13'], ['P15', 'P16'], ['P24', 'P25'], ['P26', 'P27'], ['P28', 'P29'], ['P32', 'P33']]
+
+  Minimal combinations that identify all 34 (no proper subset suffices):
+    3: bbox + hole signature (cyclic) + handedness (sign Im M4)
+    3: edge/corner pairs + hole signature (cyclic) + handedness (sign Im M4)
+  closest pair: hole signature + handedness -> 33/34, collides on [['P01', 'P02']]
+
+  Everything except handedness: 24 distinct -> mirror pairs still merged: [['P03', 'P04'], ['P06', 'P07'], ['P08', 'P09'], ['P10', 'P11'], ['P12', 'P13'], ['P15', 'P16'], ['P24', 'P25'], ['P26', 'P27'], ['P28', 'P29'], ['P32', 'P33']]
+
+  Free level (mirror-proof invariants only: bbox, E/D pairs, edge components, chirality, hole multiset):
+    22 distinct values for 22 free shapes -> UNIQUE
+    Im M4 is 0 exactly for the achiral shapes and non-zero for all chiral ones: True
+    every mirror pair gets opposite handedness signs: True
+
+  How each bounding box splits:
+    1x4:  1 shapes (1 classic)
+    2x2:  1 shapes (1 classic)
+    2x3:  7 shapes (5 classic)
+    2x4:  9 shapes (0 classic)
+    3x3:  9 shapes (0 classic)
+    3x4:  6 shapes (0 classic)
+    4x4:  1 shapes (0 classic)
+
+==============================================================================
+4. STARTER FILE: v0_starter/allextetrominoes.py
+==============================================================================
+  73 matrices -> 34 distinct one-sided shapes
+  identical matrices (same shape, same orientation): [[1, 10, 11]]
+  how many times each shape is listed: x4: 8 shapes, x3: 1 shapes, x2: 13 shapes, x1: 12 shapes
+  -> P(shape) under uniform-by-index sampling ranges from 1/73 to 4/73
+  shapes missing from the starter: none
